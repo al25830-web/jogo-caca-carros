@@ -3,164 +3,124 @@
 <html lang="pt">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Car Hunt — Caça aos Carros</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CarHunt — Caça aos Carros</title>
 <style>
 :root {
-  --bg: #0b0e13;
-  --panel: #151a23;
-  --line: #293140;
-  --text: #f5f7fb;
-  --muted: #98a3b5;
-  --green: #b9ff66;
+  --bg:#0b0e13; --panel:#151a23; --line:#293140;
+  --text:#f5f7fb; --muted:#98a3b5; --green:#b9ff66;
 }
-* { box-sizing: border-box; }
+* { box-sizing:border-box; }
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, sans-serif;
+  margin:0; background:var(--bg); color:var(--text);
+  font-family:Arial,sans-serif;
 }
 header {
-  padding: 20px 6%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid var(--line);
+  padding:18px 6%; display:flex; justify-content:space-between;
+  align-items:center; border-bottom:1px solid var(--line);
 }
-.logo { font-size: 22px; font-weight: 900; }
-.logo span { color: var(--green); }
+.logo { font-size:22px; font-weight:900; }
+.logo span,h1 span { color:var(--green); }
 .pill {
-  background: #202733;
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  padding: 9px 13px;
-  font-size: 13px;
+  background:#202733; border:1px solid var(--line);
+  border-radius:30px; padding:8px 12px; font-size:12px;
 }
-main { max-width: 1100px; margin: auto; padding: 35px 20px; }
+main { max-width:1000px; margin:auto; padding:30px 18px; }
 .eyebrow {
-  color: var(--green);
-  font-size: 12px;
-  font-weight: bold;
-  letter-spacing: 2px;
+  color:var(--green); font-size:12px; font-weight:bold;
+  letter-spacing:2px;
 }
-h1 { font-size: clamp(34px, 6vw, 62px); margin: 12px 0; }
-h1 span { color: var(--green); }
-.subtitle { color: var(--muted); line-height: 1.6; }
+h1 { font-size:clamp(34px,6vw,58px); margin:12px 0; }
+.subtitle,.muted { color:var(--muted); line-height:1.6; }
 .stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 28px 0;
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:12px; margin:25px 0;
 }
-.stat, .panel {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 16px;
-  padding: 20px;
+.stat,.panel {
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:15px; padding:18px;
 }
-.stat small, .muted { color: var(--muted); }
-.stat strong { display: block; font-size: 27px; margin-top: 8px; }
+.stat small { color:var(--muted); }
+.stat strong { display:block; font-size:26px; margin-top:8px; }
 .section-title {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  margin: 32px 0 16px;
+  display:flex; justify-content:space-between;
+  align-items:center; gap:12px; margin:30px 0 15px;
 }
-.section-title h2 { margin: 0; font-size: 21px; }
-button, .upload {
-  border: 0;
-  border-radius: 10px;
-  background: var(--green);
-  color: #10150b;
-  font-weight: bold;
-  padding: 12px 16px;
-  cursor: pointer;
-  font-size: 14px;
+.section-title h2 { font-size:21px; margin:0; }
+button,.file-button {
+  display:inline-block; border:0; border-radius:9px;
+  background:var(--green); color:#10150b; font-weight:bold;
+  padding:12px 15px; cursor:pointer; font-size:14px;
 }
 button.secondary {
-  background: #242c39;
-  color: white;
-  border: 1px solid var(--line);
+  background:#242c39; color:white; border:1px solid var(--line);
 }
-button:disabled { opacity: .45; cursor: not-allowed; }
-.missions { display: grid; gap: 12px; }
-.mission {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+button:disabled { opacity:.5; cursor:not-allowed; }
+.upload-area {
+  border:1px dashed #475366; border-radius:13px;
+  padding:18px; margin-top:15px;
 }
-.mission-icon { font-size: 25px; }
-.mission-info { flex: 1; }
-.mission-info strong { display: block; margin-bottom: 5px; }
-.mission-info small { color: var(--muted); }
+.file-button { margin:8px 0; }
+#photo { display:none; }
+.preview {
+  display:none; margin:15px 0; text-align:center;
+}
+.preview img {
+  display:block; width:100%; max-height:320px;
+  object-fit:contain; border-radius:10px;
+  background:#0b0e13; border:1px solid var(--line);
+}
+.preview p { color:var(--muted); font-size:12px; }
+label { display:block; margin-top:12px; font-size:14px; }
+input[type=text] {
+  width:100%; padding:13px; border-radius:9px;
+  background:#0d1118; border:1px solid var(--line);
+  color:white; margin:8px 0 12px; font-size:15px;
+}
+.actions { display:flex; gap:10px; flex-wrap:wrap; }
+.notice {
+  border-radius:9px; background:#202733; color:var(--muted);
+  padding:12px; font-size:12px; line-height:1.5; margin-top:14px;
+}
+.missions { display:grid; gap:12px; }
+.mission { display:flex; align-items:center; gap:12px; }
+.mission-info { flex:1; }
+.mission-info strong { display:block; margin-bottom:5px; }
+.mission-info small { color:var(--muted); }
 .car-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px;
 }
 .car-card {
-  background: var(--panel);
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  overflow: hidden;
+  background:var(--panel); border:1px solid var(--line);
+  border-radius:14px; overflow:hidden; min-width:0;
 }
 .car-card img {
-  width: 100%;
-  height: 145px;
-  object-fit: cover;
-  background: #202733;
+  display:block; width:100%; height:170px;
+  object-fit:cover; background:#202733;
 }
-.car-details { padding: 13px; }
-.car-details strong { display: block; margin-bottom: 7px; }
-.car-details small { color: var(--muted); }
+.car-details { padding:13px; overflow-wrap:anywhere; }
+.car-details strong { display:block; margin-bottom:7px; }
+.car-details small { color:var(--muted); }
+.car-details button { margin-top:12px; }
 .empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 35px 15px;
-  color: var(--muted);
-}
-.upload-area {
-  border: 1px dashed #475366;
-  border-radius: 13px;
-  padding: 22px;
-  text-align: center;
-  margin-top: 14px;
-}
-.upload-area p { color: var(--muted); font-size: 13px; }
-input[type="text"] {
-  width: 100%;
-  padding: 13px;
-  border-radius: 9px;
-  background: #0d1118;
-  border: 1px solid var(--line);
-  color: white;
-  margin: 8px 0 12px;
+  grid-column:1/-1; text-align:center; padding:30px 12px;
+  color:var(--muted); line-height:1.7;
 }
 .progress {
-  height: 7px;
-  background: #303846;
-  border-radius: 9px;
-  overflow: hidden;
-  margin-top: 12px;
+  height:7px; background:#303846; border-radius:9px;
+  overflow:hidden; margin-top:12px;
 }
-.progress div { height: 100%; width: 0; background: var(--green); }
-footer {
-  padding: 28px 20px;
-  text-align: center;
-  color: var(--muted);
-  font-size: 12px;
-}
-@media (max-width: 650px) {
-  header { padding: 17px; }
-  main { padding: 25px 15px; }
-  .stats { gap: 8px; }
-  .stat { padding: 13px; }
-  .stat strong { font-size: 22px; }
-  .car-grid { grid-template-columns: repeat(2, 1fr); }
-  .car-card img { height: 110px; }
-  .mission { flex-wrap: wrap; }
+.progress div { height:100%; width:0; background:var(--green); }
+footer { padding:25px; text-align:center; color:var(--muted); font-size:12px; }
+@media(max-width:600px) {
+  header { padding:16px; }
+  main { padding:22px 13px; }
+  .stats { gap:7px; }
+  .stat { padding:12px; }
+  .stat strong { font-size:22px; }
+  .car-grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px; }
+  .car-card img { height:125px; }
+  .section-title h2 { font-size:18px; }
 }
 </style>
 </head>
@@ -172,101 +132,98 @@ footer {
 
 <main>
   <p class="eyebrow">A TUA PRÓXIMA DESCOBERTA COMEÇA AQUI</p>
-  <h1>Vês um carro.<br><span>Ganhas pontos.</span></h1>
-  <p class="subtitle">Descobre carros, completa a tua coleção e torna-te um verdadeiro caçador automóvel.</p>
+  <h1>Vês um carro.<br><span>Gan​​has pontos.</span></h1>
+  <p class="subtitle">Descobre carros, constrói a tua coleção e completa desafios.</p>
 
   <div class="stats">
-    <div class="stat">
-      <small>⭐ Pontos</small>
-      <strong id="points">0</strong>
-    </div>
-    <div class="stat">
-      <small>🏆 Nível</small>
-      <strong id="level">1</strong>
-    </div>
-    <div class="stat">
-      <small>🚗 Carros</small>
-      <strong id="total">0</strong>
-    </div>
+    <div class="stat"><small>⭐ Pontos</small><strong id="points">0</strong></div>
+    <div class="stat"><small>🏆 Nível</small><strong id="level">1</strong></div>
+    <div class="stat"><small>🚗 Carros</small><strong id="total">0</strong></div>
   </div>
 
   <section class="panel">
     <div class="section-title" style="margin-top:0">
       <h2>📸 Descobrir um carro</h2>
     </div>
-    <p class="muted">Escolhe uma fotografia e adiciona a tua descoberta à garagem.</p>
+    <p class="muted">Escolhe uma fotografia e confirma os detalhes antes de guardar.</p>
+
     <div class="upload-area">
-      <div style="font-size:35px">🚙</div>
-      <p>Escolhe uma fotografia do carro</p>
-      <input id="photo" type="file" accept="image/*">
-      <div style="margin-top:15px;text-align:left">
-        <label for="carName">Marca e modelo (se souberes)</label>
-        <input id="carName" type="text" placeholder="Ex.: Porsche 911 GT3">
-        <button id="addCar">Adicionar à garagem +50 pontos</button>
+      <div style="text-align:center;font-size:38px">🚙</div>
+      <div style="text-align:center">
+        <label for="photo" class="file-button">Escolher fotografia</label>
+        <input id="photo" type="file" accept="image/*">
+        <p id="fileName" class="muted">Nenhuma fotografia selecionada.</p>
+      </div>
+
+      <div id="preview" class="preview">
+        <img id="previewImg" alt="Pré-visualização da fotografia escolhida">
+        <p>Confirma que esta é a fotografia correta.</p>
+        <button id="removePhoto" class="secondary" type="button">Remover fotografia</button>
+      </div>
+
+      <label for="carName">Marca e modelo do carro</label>
+      <input id="carName" type="text" maxlength="80" placeholder="Ex.: Porsche 911 GT3">
+
+      <div class="actions">
+        <button id="addCar" type="button" disabled>Adicionar à garagem +50 pontos</button>
+      </div>
+      <div class="notice">
+        Esta versão ainda não reconhece automaticamente os carros.
+        O nome é introduzido manualmente e não é verificado por IA.
       </div>
     </div>
-    <p class="muted" style="font-size:12px">Nota: a identificação automática por IA será ligada numa etapa posterior.</p>
   </section>
 
   <div class="section-title">
-    <h2>🎯 Desafios</h2>
-    <span class="pill">Missões diárias</span>
+    <h2>🎯 Desafios</h2><span class="pill">Coleção</span>
   </div>
   <div class="missions">
     <div class="panel mission">
-      <div class="mission-icon">📷</div>
-      <div class="mission-info">
-        <strong>Primeira descoberta</strong>
-        <small>Adiciona o teu primeiro carro.</small>
-      </div>
-      <span id="firstReward" class="pill">+50 XP</span>
+      <span>📷</span><div class="mission-info">
+        <strong>Primeira descoberta</strong><small>Adiciona o primeiro carro.</small>
+      </div><span id="firstReward" class="pill">+50 XP</span>
     </div>
     <div class="panel mission">
-      <div class="mission-icon">🚗</div>
-      <div class="mission-info">
-        <strong>Colecionador</strong>
-        <small>Adiciona 5 carros à tua garagem.</small>
-      </div>
-      <span id="collectorReward" class="pill">0/5</span>
+      <span>🚗</span><div class="mission-info">
+        <strong>Colecionador</strong><small>Adiciona 5 carros à garagem.</small>
+      </div><span id="collectorReward" class="pill">0/5</span>
     </div>
     <div class="panel mission">
-      <div class="mission-icon">🏆</div>
-      <div class="mission-info">
-        <strong>Caçador experiente</strong>
-        <small>Alcança 250 pontos.</small>
-      </div>
-      <span id="hunterReward" class="pill">0/250</span>
+      <span>🏆</span><div class="mission-info">
+        <strong>Caçador experiente</strong><small>Alcança 250 pontos.</small>
+      </div><span id="hunterReward" class="pill">0/250</span>
     </div>
   </div>
 
   <div class="section-title">
-    <h2>🅿️ A minha garagem</h2>
-    <span class="pill" id="garageCount">0 veículos</span>
+    <h2>🅿️ A minha garagem</h2><span class="pill" id="garageCount">0 veículos</span>
   </div>
-  <div class="car-grid" id="garage">
-    <div class="panel empty">A garagem está vazia.<br>Encontra o teu primeiro carro! 🚘</div>
-  </div>
+  <div class="car-grid" id="garage"></div>
 
-  <section class="panel" style="margin-top:25px">
+  <section class="panel" style="margin-top:24px">
     <strong>📈 Progresso para o próximo nível</strong>
     <p class="muted" id="progressText">0 / 200 pontos</p>
     <div class="progress"><div id="progressBar"></div></div>
   </section>
 </main>
-
-<footer>CARHUNT · Um jogo original de descoberta automóvel · Protótipo inicial</footer>
+<footer>CARHUNT · Protótipo de jogo de descoberta automóvel</footer>
 
 <script>
 const $ = id => document.getElementById(id);
 let cars = [];
 let points = 0;
+let selectedPhoto = "";
+let previewUrl = "";
 
 try {
-  cars = JSON.parse(localStorage.getItem("carhunt_cars") || "[]");
-  points = Number(localStorage.getItem("carhunt_points") || 0);
-  if (!Array.isArray(cars)) cars = [];
-  if (!Number.isFinite(points) || points < 0) points = 0;
-} catch (e) {
+  const savedCars = JSON.parse(localStorage.getItem("carhunt_cars") || "[]");
+  const savedPoints = Number(localStorage.getItem("carhunt_points") || 0);
+  if (Array.isArray(savedCars)) cars = savedCars.filter(car =>
+    car && typeof car.name === "string" &&
+    typeof car.photo === "string"
+  );
+  if (Number.isFinite(savedPoints) && savedPoints >= 0) points = savedPoints;
+} catch (error) {
   cars = [];
   points = 0;
 }
@@ -275,16 +232,61 @@ function save() {
   try {
     localStorage.setItem("carhunt_cars", JSON.stringify(cars));
     localStorage.setItem("carhunt_points", String(points));
-  } catch (e) {
-    alert("Não foi possível guardar os dados neste navegador.");
+    return true;
+  } catch (error) {
+    alert("O navegador não conseguiu guardar os dados. Experimenta uma fotografia mais pequena.");
+    return false;
   }
 }
+
+function updateButton() {
+  $("addCar").disabled = !(selectedPhoto && $("carName").value.trim());
+}
+
+function clearPreview() {
+  selectedPhoto = "";
+  $("photo").value = "";
+  $("fileName").textContent = "Nenhuma fotografia selecionada.";
+  $("preview").style.display = "none";
+  $("previewImg").removeAttribute("src");
+  if (previewUrl) URL.revokeObjectURL(previewUrl);
+  previewUrl = "";
+  updateButton();
+}
+
+$("photo").addEventListener("change", () => {
+  clearPreview();
+  const file = $("photo").files[0];
+  if (!file) return;
+
+  if (!file.type.startsWith("image/")) {
+    alert("Escolhe um ficheiro de imagem válido.");
+    $("photo").value = "";
+    return;
+  }
+  if (file.size > 2 * 1024 * 1024) {
+    alert("A fotografia tem mais de 2 MB. Escolhe uma imagem mais pequena.");
+    $("photo").value = "";
+    return;
+  }
+
+  selectedPhoto = file.name;
+  previewUrl = URL.createObjectURL(file);
+  $("previewImg").src = previewUrl;
+  $("preview").style.display = "block";
+  $("fileName").textContent = file.name;
+  updateButton();
+});
+
+$("removePhoto").addEventListener("click", clearPreview);
+$("carName").addEventListener("input", updateButton);
 
 function render() {
   $("points").textContent = points;
   $("level").textContent = Math.floor(points / 200) + 1;
   $("total").textContent = cars.length;
-  $("garageCount").textContent = cars.length + (cars.length === 1 ? " veículo" : " veículos");
+  $("garageCount").textContent = cars.length +
+    (cars.length === 1 ? " veículo" : " veículos");
   $("firstReward").textContent = cars.length ? "Concluído ✓" : "+50 XP";
   $("collectorReward").textContent = Math.min(cars.length, 5) + "/5";
   $("hunterReward").textContent = Math.min(points, 250) + "/250";
@@ -304,66 +306,75 @@ function render() {
     return;
   }
 
-  cars.forEach(car => {
+  cars.forEach((car, index) => {
     const card = document.createElement("article");
     card.className = "car-card";
+
     const img = document.createElement("img");
+    img.alt = "Fotografia de " + car.name;
     img.src = car.photo;
-    img.alt = car.name;
+    img.onerror = () => {
+      img.removeAttribute("src");
+      img.alt = "A fotografia guardada não está disponível";
+    };
+
     const details = document.createElement("div");
     details.className = "car-details";
     const name = document.createElement("strong");
     name.textContent = car.name;
     const date = document.createElement("small");
-    date.textContent = car.date;
-    details.append(name, date);
+    date.textContent = car.date || "";
+    const remove = document.createElement("button");
+    remove.className = "secondary";
+    remove.type = "button";
+    remove.textContent = "Eliminar carro";
+    remove.addEventListener("click", () => {
+      if (!confirm("Queres eliminar este carro da garagem?")) return;
+      cars.splice(index, 1);
+      if (save()) render();
+    });
+
+    details.append(name, date, document.createElement("br"), remove);
     card.append(img, details);
-    garage.prepend(card);
+    garage.appendChild(card);
   });
 }
 
 $("addCar").addEventListener("click", () => {
   const file = $("photo").files[0];
   const name = $("carName").value.trim();
-
-  if (!file) {
-    alert("Escolhe primeiro uma fotografia do carro.");
-    return;
-  }
-  if (!file.type.startsWith("image/")) {
-    alert("Escolhe um ficheiro de imagem válido.");
-    return;
-  }
-  if (file.size > 2 * 1024 * 1024) {
-    alert("Esta fotografia tem mais de 2 MB. Escolhe uma imagem mais pequena.");
-    return;
-  }
-  if (!name) {
-    alert("Escreve a marca e o modelo, se souberes.");
+  if (!file || !name) {
+    alert("Escolhe uma fotografia e escreve o nome do carro.");
     return;
   }
 
   const reader = new FileReader();
   reader.onload = () => {
-    cars.push({
+    const car = {
       name,
       photo: reader.result,
       date: new Date().toLocaleDateString("pt-PT")
-    });
+    };
+    cars.push(car);
     points += 50;
-    save();
-    render();
-    $("photo").value = "";
+
+    if (!save()) {
+      cars.pop();
+      points -= 50;
+      return;
+    }
+
+    clearPreview();
     $("carName").value = "";
-    alert("Carro adicionado! Ganhaste 50 pontos! 🏆");
+    render();
+    alert("Carro adicionado à garagem! Ganhaste 50 pontos. 🏆");
   };
   reader.onerror = () => alert("Não foi possível ler a fotografia.");
   reader.readAsDataURL(file);
 });
 
 render();
+updateButton();
 </script>
 </body>
 </html>
-
-  
